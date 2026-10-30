@@ -4,23 +4,19 @@
 
 # Author: Upkar Lidder (IBM)
 # Additional Authors:
-# <your Github username>
+# jagrutisarode08-bit
 
 # Input:
-# p, principal amount
-# t, time period in years
-# r, annual rate of interest
+# principal, principal amount
+# years, time period in years
+# rate, annual rate of interest
 
 # Output:
-# simple interest = p*t*r
+# simple interest = principal*years*rate/100
 
-echo "Enter the principal:"
-read p
-echo "Enter rate of interest per year:"
-read r
-echo "Enter time period in years:"
-read t
+read -r -p "Enter the principal: " principal
+read -r -p "Enter rate of interest per year: " rate
+read -r -p "Enter time period in years: " years
 
-s=$(expr $p \* $t \* $r / 100)
-echo "The simple interest is: "
-echo $s
+interest=$(awk -v principal="$principal" -v years="$years" -v rate="$rate" 'BEGIN { printf "%.2f", principal * years * rate / 100 }')
+printf "The simple interest is: %s\n" "$interest"
